@@ -1,6 +1,8 @@
 using System.Collections.Immutable;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.Diagnostics;
+using Microsoft.CodeAnalysis.CSharp;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace VarAnalyzer
 {
@@ -27,10 +29,17 @@ namespace VarAnalyzer
 
         public override void Initialize(AnalysisContext context)
         {
+            context.RegisterSyntaxNodeAction(AnalyzeNode, SyntaxKind.VariableDeclaration);
         }
 
-        private static void AnalyzeSymbol(SymbolAnalysisContext context)
+        private void AnalyzeNode(SyntaxNodeAnalysisContext context)
         {
+            VariableDeclarationSyntax variableDeclaration = (VariableDeclarationSyntax)context.Node;
+            TypeSyntax variableTypeName = variableDeclaration.Type;
+            if (variableTypeName.IsVar)
+            {
+                context.ReportDiagnostic(Diagnostic.Create(Rule, variableDeclaration.Type.GetLocation()));
+            }
         }
     }
 }
