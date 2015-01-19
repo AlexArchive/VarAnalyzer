@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.22310.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VarAnalyzer", "VarAnalyzer\VarAnalyzer\VarAnalyzer.csproj", "{A7BD8499-EE35-443F-A651-1C70074AA980}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{C432F7C0-EBF9-49AC-8194-9DABD1033EBD}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\packages.config = .nuget\packages.config
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VarAnalyzer.Vsix", "VarAnalyzer\VarAnalyzer.Vsix\VarAnalyzer.Vsix.csproj", "{505506D6-BBE6-410E-AF31-547E34009FDB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A7BD8499-EE35-443F-A651-1C70074AA980}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A7BD8499-EE35-443F-A651-1C70074AA980}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A7BD8499-EE35-443F-A651-1C70074AA980}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A7BD8499-EE35-443F-A651-1C70074AA980}.Release|Any CPU.Build.0 = Release|Any CPU
+		{505506D6-BBE6-410E-AF31-547E34009FDB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{505506D6-BBE6-410E-AF31-547E34009FDB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{505506D6-BBE6-410E-AF31-547E34009FDB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{505506D6-BBE6-410E-AF31-547E34009FDB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
