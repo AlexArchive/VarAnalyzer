@@ -7,11 +7,10 @@ namespace VarAnalyzer
         internal static DiagnosticDescriptor CreateWarning(
             string title, 
             string messageFormat, 
-            Category category, 
-            string id = "test")
+            Category category)
         {
             return new DiagnosticDescriptor(
-                id, 
+                Constant.DiagnosticId,
                 title, 
                 messageFormat, 
                 category.ToString(),

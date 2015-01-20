@@ -33,6 +33,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Category.cs" />
+    <Compile Include="FixProvider.cs" />
+    <Compile Include="Constant.cs" />
     <Compile Include="Helper.cs" />
     <Compile Include="Analyzer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
