@@ -26,7 +26,18 @@ namespace VarAnalyzer
             var variableDeclaration = (VariableDeclarationSyntax)context.Node;
             TypeSyntax variableTypeName = variableDeclaration.Type;
             if (variableTypeName.IsVar)
+            {
+                IAliasSymbol aliasInfo = context.SemanticModel.GetAliasInfo(variableTypeName);
+                if (aliasInfo == null)
+                {
+                    ITypeSymbol type = context.SemanticModel.GetTypeInfo(variableTypeName).ConvertedType;
+                    if (type.IsAnonymousType)
+                    {
+                        return;
+                    }
+                }
                 context.ReportDiagnostic(Diagnostic.Create(_description, variableDeclaration.Type.GetLocation()));
+            }
         }
     }
 }
