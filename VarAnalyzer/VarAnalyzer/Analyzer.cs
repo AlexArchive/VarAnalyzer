@@ -11,8 +11,8 @@ namespace VarAnalyzer
     internal class Analyzer : DiagnosticAnalyzer
     {
         private static readonly DiagnosticDescriptor _description = Helper.CreateWarning(
-            "You should avoid using var here", 
-            "You should avoid using var here", 
+            "You should avoid using var here",
+            "You should avoid using var here",
             Category.Readability);
 
         public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => ImmutableArray.Create(_description);
@@ -26,23 +26,17 @@ namespace VarAnalyzer
         {
             var variableDeclaration = (VariableDeclarationSyntax)context.Node;
             TypeSyntax variableTypeName = variableDeclaration.Type;
-            if (variableTypeName.IsVar)
-            {
-                if (variableDeclaration.Variables.Count > 1)
-                {
-                    return;
-                }
-                IAliasSymbol aliasInfo = context.SemanticModel.GetAliasInfo(variableTypeName);
-                if (aliasInfo == null)
-                {
-                    ITypeSymbol type = context.SemanticModel.GetTypeInfo(variableTypeName).ConvertedType;
-                    if (type.IsAnonymousType)
-                    {
-                        return;
-                    }
-                }
-                context.ReportDiagnostic(Diagnostic.Create(_description, variableDeclaration.Type.GetLocation()));
-            }
+            if (!variableTypeName.IsVar)
+                return;
+            if (variableDeclaration.Variables.Count > 1)
+                return;
+            IAliasSymbol aliasInfo = context.SemanticModel.GetAliasInfo(variableTypeName);
+            if (aliasInfo != null)
+                return;
+            ITypeSymbol type = context.SemanticModel.GetTypeInfo(variableTypeName).ConvertedType;
+            if (type.IsAnonymousType)
+                return;
+            context.ReportDiagnostic(Diagnostic.Create(_description, variableDeclaration.Type.GetLocation()));
         }
     }
 }
