@@ -3,6 +3,7 @@ using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Diagnostics;
 using System.Collections.Immutable;
+using System.Linq;
 
 namespace VarAnalyzer
 {
@@ -27,6 +28,10 @@ namespace VarAnalyzer
             TypeSyntax variableTypeName = variableDeclaration.Type;
             if (variableTypeName.IsVar)
             {
+                if (variableDeclaration.Variables.Count > 1)
+                {
+                    return;
+                }
                 IAliasSymbol aliasInfo = context.SemanticModel.GetAliasInfo(variableTypeName);
                 if (aliasInfo == null)
                 {
